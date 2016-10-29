@@ -15,7 +15,7 @@ var DAT = DAT || {};
 
 DAT.Globe = function(container, opts) {
   opts = opts || {};
-  
+
   var colorFn = opts.colorFn || function(x) {
     var c = new THREE.Color();
     c.setHSL( ( 0.6 - ( x * 0.5 ) ), 1.0, 0.5 );
@@ -167,7 +167,7 @@ DAT.Globe = function(container, opts) {
 
   function addData(data, opts) {
     var lat, lng, size, color, i, step, colorFnWrapper;
-
+    console.log(data)
     opts.animated = opts.animated || false;
     this.is_animated = opts.animated;
     opts.format = opts.format || 'magnitude'; // other option is 'legend'
@@ -406,4 +406,3 @@ DAT.Globe = function(container, opts) {
   return this;
 
 };
-

@@ -127,21 +127,37 @@
     }
   });
 
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', '/globe-search/search.json', true);
-  xhr.onreadystatechange = function(e) {
-    if (xhr.readyState === 4) {
-      if (xhr.status === 200) {
-        var data = JSON.parse(xhr.responseText);
-        window.data = data;
-        globe.addData(data, {format: 'legend'});
-        globe.createPoints();
-        globe.animate();
-        document.body.style.backgroundImage = 'none'; // remove loading
-      }
-    }
-  };
-  xhr.send(null);
+      /* ALl the matters */
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', 'http://www.mapquestapi.com/traffic/v2/incidents' + 
+        '?key=0RK10HNzPbE890TiBRe3TYTsCG9AU5MI&'
+        + 'boundingBox=85,-180,-85,180', true);
+      xhr.onreadystatechange = function(e) {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            var json = JSON.parse(xhr.responseText);
+            var data = ["Incidents"];
+            var incidentArr = [];
+            console.log(json);
+            json.incidents.forEach(function(incident) {
+              incidentArr.push(incident.lat);
+              incidentArr.push(incident.lng);
+              incidentArr.push((incident.severity + 1)/5);
+            });
+            data.push(incidentArr);
+            data = [data];
+            window.data = data;
+            for (i=0;i<data.length;i++) {
+              globe.addData(data[i][1], {format: 'magnitude', name: data[i][0], animated: true});
+            }
+            globe.createPoints();
+            settime(globe,0)();
+            globe.animate();
+            document.body.style.backgroundImage = 'none'; // remove loading
+          }
+        }
+      };
+      xhr.send(null);
 
 </script>
 

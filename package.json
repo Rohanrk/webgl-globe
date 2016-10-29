@@ -1,0 +1,23 @@
+{
+  "name": "webgl-globe",
+  "version": "1.0.0",
+  "description": "The **WebGL Globe** is an open platform for geographic data visualization created by the Google Data Arts Team. We encourage you to copy the code, add your own data, and create your own globes.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rohanrk/webgl-globe.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rohanrk/webgl-globe/issues"
+  },
+  "homepage": "https://github.com/Rohanrk/webgl-globe#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
